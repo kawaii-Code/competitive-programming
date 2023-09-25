@@ -1,5 +1,3 @@
-// DOESN'T WORK
-
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -11,7 +9,7 @@ using namespace std;
 
 typedef unsigned long long ull;
 
-bool is_correct(int height, int max, vector<int> &heights, int n) {
+int answer(int height, int max, vector<int> &heights, int n) {
     int needed = height * n;
     for (int i = 0; i < n; i++) {
         if (heights[i] < height) {
@@ -20,7 +18,7 @@ bool is_correct(int height, int max, vector<int> &heights, int n) {
             needed -= height;
         }
     }
-    return needed <= max;
+    return needed;
 }
 
 void solve() {
@@ -34,11 +32,27 @@ void solve() {
         sum += height[i];
     }
 
-    int result = (x + sum) / n;
-    while (!is_correct(result, x, height, n)) {
-        result--;
+    int left = x / n;
+    int right = (x + sum) / n;
+    int previousMiddle = -1;
+    while (left < right) {
+        int middle = (left + right) / 2;
+        if (middle == previousMiddle) {
+            break;
+        }
+        previousMiddle = middle;
+
+        int needed = answer(middle, x, height, n);
+        if (needed < x) {
+            left = middle + 1;
+        } else if (needed > x) {
+            right = middle - 1;
+        } else {
+            cout << middle << "\n";
+            return;
+        }
     }
-    cout << result << "\n";
+    cout << right << "\n";
 }
 
 int main() {
