@@ -5,6 +5,9 @@
 #include <queue>
 #include <stack>
 
+typedef unsigned long long ull;
+typedef long long ll;
+
 using namespace std;
 
 void solve() {
