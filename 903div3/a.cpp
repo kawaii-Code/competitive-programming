@@ -17,6 +17,25 @@ using namespace std;
 #define debug(x) std::cout << #x << " = " << x << "\n"
 
 void solve() {
+    int n, m;
+    cin >> n >> m;
+
+    string s, x;
+    cin >> x >> s;
+
+    int count = 0;
+    while (n <= 50) {
+        if (x.find(s) != string::npos) {
+            cout << count << "\n";
+            return;
+        }
+
+        x += x;
+        n *= 2;
+        count++;
+    }
+
+    cout << -1 << "\n";
 }
 
 int main() {
