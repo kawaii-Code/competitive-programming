@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-#define debug(x) std::cout << #x << " = " << x << "\n"
+#define debug(x) std::cout << #x << " = " << x << std::endl
 
 typedef unsigned long long ull;
 typedef long long ll;
